@@ -1,0 +1,9 @@
+{
+  "name": "myExtension",
+  "description": "My custom Arcade extension",
+  "dependencies": {},
+  "files": [
+    "main.ts"
+  ],
+  "public": true
+}
