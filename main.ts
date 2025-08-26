@@ -1,11 +1,11 @@
 //% color=#0fbc11 icon="\uf2b9"
 //% color=160 weight=100 icon="\uf086"
-namespace gptmakecode {
+namespace chatgpt {
 
-    //% block="ask ChatGPT $prompt"
-    export function ask(prompt: string, handler: (response: string) => void) {
+    //% block="ask ChatGPT $question"
+    export function ask(question: string, handler: (response: string) => void) {
         let url = "http://localhost:3000/chat";
-        let data = JSON.stringify({ prompt: prompt });
+        let data = JSON.stringify({ question: question });
 
         control.runInParallel(() => {
             fetch(url, {
@@ -15,7 +15,8 @@ namespace gptmakecode {
             })
                 .then(resp => resp.json())
                 .then(json => {
-                    handler(json.text)
+                    // server returns { answer: "..." }
+                    handler(json.answer)
                 })
                 .catch(err => {
                     console.log("Error: " + err)
